@@ -5,18 +5,27 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
+// Set JAVA_HOME for this project
+System.setProperty("java.home", "C:/Program Files/Android/Android Studio/jbr")
+
 android {
     namespace = "com.example.chat_ui"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
+        jvmTarget = "1.8"
+        freeCompilerArgs = freeCompilerArgs + listOf(
+            "-Xjdk-release=8",
+            "-Xskip-runtime-version-check",
+            "-Xdisable-default-scripting-plugin",
+            "-Xuse-ir"
+        )
     }
 
     defaultConfig {
